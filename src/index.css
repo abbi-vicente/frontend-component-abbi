@@ -5,6 +5,7 @@
 	margin: 0;
 	font-family: "Kanit";
 	/* color: #e18282; */
+	box-sizing: border-box;
 }
 .navbar {
 	/* background-color: #282c34; */
@@ -31,6 +32,6 @@
 }
 .main {
 	max-width: 600px;
-	margin: 40px auto;
+	/* margin: 40px auto; */
 	padding: 20px;
 }

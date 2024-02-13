@@ -4,10 +4,11 @@
 * {
 	margin: 0;
 	font-family: "Kanit";
-	color: #e18282;
+	/* color: #e18282; */
+	box-sizing: border-box;
 }
 .navbar {
-	background-color: #282c34;
+	/* background-color: #282c34; */
 	padding: 20px;
 	display: flex;
 	align-items: center;
@@ -16,7 +17,7 @@
 	color: white;
 }
 .navbar h1 {
-	color: #f1356d;
+	color: black;
 }
 .navbar .links {
 	margin-left: auto;
@@ -27,10 +28,10 @@
 	padding: 6px;
 }
 .navbar a:hover {
-	color: #f1356d;
+	color: black;
 }
 .main {
 	max-width: 600px;
-	margin: 40px auto;
+	/* margin: 40px auto; */
 	padding: 20px;
 }

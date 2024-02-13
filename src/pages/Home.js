@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import "./Home.css";
+import "./styles/Home.css";
 import BlogList from "./BlogList";
 import useFetch from "../useFetch";
 

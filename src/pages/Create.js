@@ -6,24 +6,49 @@ const Create = () => {
 	const [title, setTitle] = useState("");
 	const [body, setBody] = useState("");
 	const [author, setAuthor] = useState("");
+	const [error, setError] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const navigate = useNavigate();
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const blog = { title, body, author };
 
+		const response = await fetch("http://localhost:4000/api/posts", {
+			method: "POST",
+			body: JSON.stringify(blog),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		const json = await response.json();
+
 		setIsLoading(true);
 
-		fetch("http://localhost:8000/blogs/", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify(blog),
-		}).then(() => {
+		if (!response.ok) {
+			setError(json.error);
+		}
+
+		if (response.ok) {
+			setTitle("");
+			setBody("");
+			setAuthor("	");
+			setError(null);
 			console.log("new blog added");
 			setIsLoading(false);
 			navigate("/");
-		});
+		}
+		// setIsLoading(true);
+
+		// fetch("http://localhost:8000/blogs/", {
+		// 	method: "POST",
+		// 	headers: { "Content-Type": "application/json" },
+		// 	body: JSON.stringify(blog),
+		// }).then(() => {
+		// 	console.log("new blog added");
+		// 	setIsLoading(false);
+		// 	navigate("/");
+		// });
 	};
 
 	return (
@@ -38,6 +63,7 @@ const Create = () => {
 				<input type="text" required value={author} onChange={(e) => setAuthor(e.target.value)} />
 				{!isLoading && <button>Add Blog</button>}
 				{isLoading && <button disabled>Adding Blog...</button>}
+				{error && <div className="error">{error}</div>}
 			</form>
 		</div>
 	);

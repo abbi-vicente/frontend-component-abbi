@@ -1,17 +1,27 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "./Home.css";
-import BlogList from "./BlogList";
-import useFetch from "../useFetch";
+import BlogDetails from "./BlogDetails";
 
 const Home = () => {
-	const { error, isPending, data: blogs } = useFetch("http://localhost:8000/blogs");
+	const [blogs, setBlogs] = useState(null);
+
+	useEffect(() => {
+		const fetchPosts = async () => {
+			const response = await fetch("/api/posts");
+			const json = await response.json();
+
+			if (response.ok) {
+				setBlogs(json);
+			}
+		};
+
+		fetchPosts();
+	}, []);
 
 	return (
 		<div className="home">
-			{error && <div>{error}</div>}
-			{isPending && <div>Loading...</div>}
-			{blogs && <BlogList blogs={blogs} />}
+			<div className="posts">{blogs && blogs.map((blog) => <BlogDetails key={blog._id} post={blog} />)}</div>
 		</div>
 	);
 };

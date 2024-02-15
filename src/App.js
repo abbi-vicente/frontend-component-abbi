@@ -6,6 +6,7 @@ import BlogDetails from "./pages/BlogDetails";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import BlogList from "./pages/BlogList";
 
 function App() {
 	return (
@@ -18,7 +19,8 @@ function App() {
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/create" element={<Create />} />
-						<Route path="/blogs/:id" element={<BlogDetails />} />
+						<Route path="/posts" element={<BlogList />} />
+						<Route path="/posts/:id" element={<BlogDetails />} />
 						<Route path="/login" element={<Login />} />
 						<Route path="/register" element={<Registration />} />
 					</Routes>

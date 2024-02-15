@@ -29,7 +29,6 @@ const UpdateForm = ({ id, initialTitle, initialDescription, initialAuthor, onUpd
 			.catch((error) => {
 				console.log("Update unsuccessful");
 			});
-		console.log("updating");
 	};
 
 	return (

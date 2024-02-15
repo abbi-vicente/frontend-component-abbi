@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Create.css";
+import "./styles/Create.css";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 const Create = () => {
@@ -46,17 +46,6 @@ const Create = () => {
 			setIsLoading(false);
 			navigate("/");
 		}
-		// setIsLoading(true);
-
-		// fetch("http://localhost:8000/blogs/", {
-		// 	method: "POST",
-		// 	headers: { "Content-Type": "application/json" },
-		// 	body: JSON.stringify(blog),
-		// }).then(() => {
-		// 	console.log("new blog added");
-		// 	setIsLoading(false);
-		// 	navigate("/");
-		// });
 	};
 
 	return (

@@ -1,10 +1,8 @@
-import { useBlogsContext } from "../hooks/useBlogsContext";
+import "./styles/BlogList.css";
 import { Link } from "react-router-dom";
-import BlogDetails from "./BlogDetails";
+import { useBlogsContext } from "../hooks/useBlogsContext";
 
 const BlogList = ({ blog }) => {
-	// console.log(blog);
-
 	const { dispatch } = useBlogsContext();
 
 	const handleClick = async () => {
@@ -23,7 +21,6 @@ const BlogList = ({ blog }) => {
 			<Link to={`/posts/${blog._id}`}>
 				<h4 onClick={handleClick}>Title: {blog.title}</h4>
 			</Link>
-			{/* <BlogDetails key={blog._id} blog={blog} /> */}
 			<p>Author: {blog.author}</p>
 			<p>Description: {blog.description}</p>
 			<p>Likes: {blog.likes}</p>

@@ -1,6 +1,8 @@
+
 import React, { useState } from "react";
-import "./Registration.css";
 import { useRegister } from "../hooks/useRegister";
+import './styles/Registration.css'
+
 
 const Registration = () => {
 	const [username, setUsername] = useState("");

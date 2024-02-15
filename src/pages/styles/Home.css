@@ -1,0 +1,31 @@
+.home {
+}
+
+.blog-preview {
+	padding: 10px 16px;
+	margin: 20px 0;
+	border-bottom: 1px solid #fafafa;
+}
+
+.featured-container {
+	display: flex;
+}
+
+.featured-img {
+	background-color: black;
+	border-radius: 50px;
+	width: 60vw;
+	height: max-content;
+	justify-content: flex-start;
+	margin-right: 10%;
+	
+	img{
+		opacity: 0.7;
+		border-radius: 50px;
+		width: 60vw;
+	}
+}
+
+.featured-blog {
+	width: 50%;
+}

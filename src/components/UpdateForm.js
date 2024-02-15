@@ -8,6 +8,8 @@ const UpdateForm = ({ id, initialTitle, initialDescription, initialAuthor, onUpd
 	const [title, setTitle] = useState(initialTitle);
 	const [description, setDescription] = useState(initialDescription);
 	const [author, setAuthor] = useState(initialAuthor);
+	const [error, setError] = useState(null);
+	const { user } = useAuthContext();
 
 	useEffect(() => {
 		fetchBlogs();
@@ -21,13 +23,28 @@ const UpdateForm = ({ id, initialTitle, initialDescription, initialAuthor, onUpd
 	};
 
 	const handleUpdate = () => {
-		axios
-			.patch(`http://localhost:4000/api/posts/${id}`, { title, description, author })
-			.then(() => {
+		if (!user) {
+			return;
+		}
+		fetch(`http://localhost:4000/api/posts/${id}`, {
+			method: "PATCH",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${user.token}`,
+			},
+			body: JSON.stringify({ title, description, author }),
+		})
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error("Update unsuccessful");
+				}
+				return response.json();
+			})
+			.then((data) => {
 				onUpdate();
 			})
 			.catch((error) => {
-				console.log("Update unsuccessful");
+				console.log(error.message);
 			});
 	};
 

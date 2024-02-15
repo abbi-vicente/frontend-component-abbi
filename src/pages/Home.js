@@ -1,15 +1,30 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import BlogDetails from "./BlogDetails";
 import "./styles/Home.css";
 import BlogList from "./BlogList";
 import useFetch from "../useFetch";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-	const { error, isPending, data: blogs } = useFetch("http://localhost:8000/blogs");
+	const [blogs, setBlogs] = useState(null);
+
+	useEffect(() => {
+		const fetchPosts = async () => {
+			const response = await fetch("/api/posts");
+			const json = await response.json();
+
+			if (response.ok) {
+				setBlogs(json);
+			}
+		};
+
+		fetchPosts();
+	}, []);
 
 	return (
 		<div className="home">
+
 			<div className="featured-container">
 				
 				<div className="featured-img">
@@ -29,6 +44,7 @@ const Home = () => {
 			<div className="blogList">
 				{blogs && <BlogList blogs={blogs} />}
 			</div>
+
 		</div>
 	);
 };

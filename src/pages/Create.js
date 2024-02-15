@@ -14,6 +14,8 @@ const Create = () => {
 		e.preventDefault();
 		const blog = { title, body, author };
 
+
+
 		const response = await fetch("http://localhost:4000/api/posts", {
 			method: "POST",
 			body: JSON.stringify(blog),
@@ -21,13 +23,14 @@ const Create = () => {
 				"Content-Type": "application/json",
 			},
 		});
-		const json = await response.json();
-
+		
 		setIsLoading(true);
 
 		if (!response.ok) {
 			setError(json.error);
 		}
+
+		const json = await response.json();
 
 		if (response.ok) {
 			setTitle("");
@@ -38,6 +41,8 @@ const Create = () => {
 			setIsLoading(false);
 			navigate("/");
 		}
+
+		
 		// setIsLoading(true);
 
 		// fetch("http://localhost:8000/blogs/", {

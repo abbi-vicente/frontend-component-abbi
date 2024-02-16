@@ -32,8 +32,7 @@ const Home = () => {
 						alt="designer"
 					/>
 				</div>
-
-				<div className="featured-blog">
+      <div className="featured-blog">
 					<h3>Featured</h3>
 					<h1>Breaking Into Architectural Design</h1>
 					<h3>
@@ -48,7 +47,8 @@ const Home = () => {
 				</div>
 			</div>
 		</div>
-	);
+  )
+ 
 };
 
 export default Home;

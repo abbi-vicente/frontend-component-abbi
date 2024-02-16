@@ -21,6 +21,8 @@ const Create = () => {
 		}
 		const blog = { title, description, author };
 
+
+
 		const response = await fetch("http://localhost:4000/api/posts", {
 			method: "POST",
 			body: JSON.stringify(blog),
@@ -29,13 +31,14 @@ const Create = () => {
 				Authorization: `Bearer ${user.token}`,
 			},
 		});
-		const json = await response.json();
-
+		
 		setIsLoading(true);
 
 		if (!response.ok) {
 			setError(json.error);
 		}
+
+		const json = await response.json();
 
 		if (response.ok) {
 			setTitle("");
